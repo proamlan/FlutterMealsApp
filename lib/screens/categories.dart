@@ -11,7 +11,8 @@ class CategoriesScreen extends StatelessWidget {
   void _onSelectCategory(BuildContext context, Category category) {
     var logger = Logger();
     final filteredMeals =
-        dummyMeals.where((element) => element.categories.contains(category.id)).toList();
+    dummyMeals.where((element) => element.categories.contains(category.id))
+        .toList();
 
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (BuildContext context) {
@@ -21,9 +22,8 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Pick your category")),
-      body: GridView(
+    return
+      GridView(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2, childAspectRatio: 3 / 2, crossAxisSpacing: 20),
         children: [
@@ -34,7 +34,6 @@ class CategoriesScreen extends StatelessWidget {
                   _onSelectCategory(context, category);
                 })
         ],
-      ),
-    );
+      );
   }
 }
