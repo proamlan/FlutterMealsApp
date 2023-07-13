@@ -37,6 +37,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: 5.1.0
   logger: 1.4.0
+  transparent_image: 2.0.1
+  http: any
+
 
 dev_dependencies:
   flutter_test:
