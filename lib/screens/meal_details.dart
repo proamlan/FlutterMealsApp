@@ -1,35 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:meals/models/meals.dart';
-import 'package:meals/screens/meal_item.dart';
+import 'package:transparent_image/transparent_image.dart';
 
-class MealsScreen extends StatelessWidget {
-  final List<Meal> meals;
-  final String title;
 
-  const MealsScreen({super.key, required this.meals, required this.title});
+class MealDetailsScreen extends StatelessWidget {
+
+  final Meal meal;
+
+  const MealDetailsScreen({super.key, required this.meal});
+
 
   @override
   Widget build(BuildContext context) {
-    Widget mainContent = ListView.builder(
-        itemCount: meals.length,
-        itemBuilder: (context, index) => MealItem(meal: meals[index]));
-
-    if (meals.isEmpty) {
-      mainContent = const Center(
-          child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            "On ho!. There is no meals",
-            style: TextStyle(color: Colors.white),
-          )
-        ],
-      ));
-    }
     return Scaffold(
-        appBar: AppBar(
-          title: Text(title),
+      appBar: AppBar(
+        title: Text(meal.title),
+      ),
+      body: Container(
+        child: Column(
+          children: [
+            FadeInImage(placeholder: MemoryImage(kTransparentImage),
+              image: NetworkImage(meal.imageUrl),
+              fit: BoxFit.cover,
+              width: double.infinity,
+            )
+          ],
         ),
-        body: mainContent);
+      ),
+    );
   }
+
 }
